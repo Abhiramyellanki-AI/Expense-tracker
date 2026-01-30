@@ -1,0 +1,118 @@
+import java.util.Scanner;
+
+public class expense {
+    static Scanner scanner = new Scanner(System.in);
+    static int food = 0;
+    static int transport = 0;
+    static int personal_care = 0;
+
+
+    public static void main(String[] args){
+        boolean isRunning = true;
+        System.out.println("Welcome to Expense tracker");
+        while(isRunning){
+            System.out.println("******************");
+            System.out.println("1. Add Expense\n" +
+                    "2. View All Expenses\n" +
+                    "3. Show Summary\n" +
+                    "4. Exit\n");
+            System.out.println("********************");
+            System.out.println("Enter your choice: ");
+            int choice = scanner.nextInt();
+            switch(choice){
+                case 1 -> Expense();
+                case 2 -> view();
+                case 3 -> summary();
+                case 4 -> isRunning = false;
+                default -> System.out.println("invalid input");
+
+
+            }
+            System.out.println("thank you for choosing expense tracker");
+
+
+        }
+    }
+    static void Expense(){
+        boolean isTrue = true;
+        while(isTrue) {
+            System.out.println("categories :");
+            System.out.println("1.food");
+            System.out.println("2.transport");
+            System.out.println("3.personal care");
+            System.out.println("4.exit");
+            System.out.println("enter the choice of login: " );
+            int choice_of_login= scanner.nextInt();
+            switch(choice_of_login){
+                case 1 ->{
+                    System.out.println("Enter the expense for food: ");
+                    int food1 = scanner.nextInt();
+                    food+=food1;
+                }
+                case 2 -> {
+                    System.out.println("Enter the expense for food: ");
+                    int trans = scanner.nextInt();
+                    transport+=trans;
+                }
+                case 3 -> {
+                    System.out.println("Enter the expense for personal care:  ");
+                    int per = scanner.nextInt();
+                    personal_care+=per;
+                }
+                case 4 -> isTrue = false;
+                default -> System.out.println("invalid input");
+
+            }
+
+
+        }
+
+
+    }
+    static void view(){
+        System.out.println("Food: "+food);
+        System.out.println("transport: "+transport);
+        System.out.println("personal care: "+personal_care);
+    }
+    static void summary(){
+        boolean isDone = true;
+        while(isDone){
+            System.out.println("1.avg");
+            System.out.println("2.Highest expense");
+            System.out.println("3.lowest expense");
+            System.out.println("4.exit");
+            System.out.println("Enter the choice: ");
+            int choice2 = scanner.nextInt();
+            switch (choice2){
+                case 1 -> {
+                    System.out.println("average of the expense");
+                    int numerator = food + transport + personal_care;
+                    int avg = numerator/3;
+                    System.out.println(avg);
+                }
+                case 2 -> {
+                    System.out.println("Highest");
+                    if(food>transport && food>personal_care){
+                        System.out.println("Highest: "+food);
+                    }else if(transport>food && transport>personal_care){
+                        System.out.println("Highest: "+transport);
+                    }else if (personal_care>food && personal_care>transport){
+                        System.out.println("Highest: "+personal_care);
+                    }
+                }
+                case 3 -> {
+                    System.out.println("Lowest expense");
+                    if(food<transport && food<personal_care){
+                        System.out.println("Lowest: "+food);
+                    }else if(transport<food && transport<personal_care){
+                        System.out.println("Lowest: "+transport);
+                    }else if (personal_care<food && personal_care<transport){
+                        System.out.println("Lowest: "+personal_care);
+                    }
+
+                }
+                case 4 -> isDone = false;
+            }
+        }
+    }
+}
